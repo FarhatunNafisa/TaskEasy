@@ -1,8 +1,13 @@
 import express from "express"; //import library express
 import "dotenv/config";
-import{db} from "./configs/db.js";
+import { db } from "./configs/db.js";
+import userRouter from './routes/user.route.js';
+
 const app = express(); //library express initialized
-const PORT = 4000; // port variable untuk memverifikasi port yang kita pakai
+
+const PORT = process.env.PORT; 
+app.use(express.json());
+app.use("/api/v1/users", userRouter);
 
 app.get("/", (req, res) => {
     res.status(200).json({
